@@ -47,9 +47,9 @@ function initialize() {
   connections = [];
 
   
-  ball.oldPos = {x: ball.pos.x - 5, y: ball.pos.y};
+  ball.oldPos = {x: ball.pos.x, y: ball.pos.y};
 
-  scoreball.oldPos = {x: scoreball.pos.x + 3, y: scoreball.pos.y};
+  scoreball.oldPos = {x: scoreball.pos.x, y: scoreball.pos.y};
   
   timeInterval = setInterval(() => {
     timeElapsed++;
@@ -107,10 +107,7 @@ function draw() {
       score++;
       lastScore = tick
       scoreball.pos.x = Math.floor(Math.random() * (width - (2 * margin + 2 * ballRadius + 50)) + (margin + ballRadius));
-      
-    }/*else if (ball.oldPos.y > 50 && ball.pos.y <= 50) {
-      score--;
-    }*/
+    }
   }
   
   tick++;
@@ -139,19 +136,28 @@ function drawScene() {
   }
   
   strokeWeight(3);
-  stroke(40);
+  stroke(0);
+  fill('grey');
+  circle(ball.pos.x,ball.pos.y - prop,prop)
+  circle(ball.pos.x,ball.pos.y + prop,prop)
+  rect(ball.pos.x - 1/2 * prop, ball.pos.y - prop, prop, 2 * prop)
   fill(255, 165, 0);
-  circle(ball.pos.x, ball.pos.y, ballRadius*2);
+  stroke(40)
+  circle(ball.pos.x, ball.pos.y, 1/2 * prop);
+  
 
   stroke('black');
-  line(scoreball.pos.x + ballRadius,scoreball.pos.y,scoreball.pos.x + ballRadius,scoreball.pos.y + prop)
+  line(scoreball.pos.x + ballRadius,scoreball.pos.y,scoreball.pos.x + ballRadius,scoreball.pos.y + 1.25 * prop)
 
-  line(scoreball.pos.x - ballRadius,scoreball.pos.y,scoreball.pos.x - ballRadius,scoreball.pos.y + prop)
+  line(scoreball.pos.x - ballRadius,scoreball.pos.y,scoreball.pos.x - ballRadius,scoreball.pos.y + 1.25 * prop)
 
   fill('red');
-  triangle(scoreball.pos.x - ballRadius, scoreball.pos.y, scoreball.pos.x - ballRadius, scoreball.pos.y - 0.5 * prop, scoreball.pos.x - ballRadius + 0.5 * prop, scoreball.pos.y - 0.25 * prop)
+  strokeWeight(3);
+  triangle(scoreball.pos.x - ballRadius, scoreball.pos.y, scoreball.pos.x - ballRadius, scoreball.pos.y - 0.75 * prop, scoreball.pos.x - ballRadius + 0.75 * prop, scoreball.pos.y - 0.375 * prop)
 
-  triangle(scoreball.pos.x + ballRadius, scoreball.pos.y, scoreball.pos.x + ballRadius, scoreball.pos.y - 0.5 * prop, scoreball.pos.x + ballRadius + 0.5 * prop, scoreball.pos.y - 0.25 * prop)
+  triangle(scoreball.pos.x + ballRadius, scoreball.pos.y, scoreball.pos.x + ballRadius, scoreball.pos.y - 0.75 * prop, scoreball.pos.x + ballRadius + 0.75 * prop, scoreball.pos.y - 0.375 * prop)
+
+
   
   var fixedConnections = [];
   
