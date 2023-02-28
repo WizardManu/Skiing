@@ -6,7 +6,7 @@ const ballRadius = 30;
 const friction = 0.01;
 const gameTime = 45;
 const margin = 10;
-
+const prop = 30;
 
 let tick;
 let startTime;
@@ -24,7 +24,6 @@ let scoreball = {};
 let alreadyPlayed = false;
 let stopped = true;
 let timeInterval;
-
 
 
 function setup() {
@@ -143,14 +142,16 @@ function drawScene() {
   stroke(40);
   fill(255, 165, 0);
   circle(ball.pos.x, ball.pos.y, ballRadius*2);
-  
-  strokeWeight(2);
-  stroke(40);
-  fill(255, 65, 0);
-  circle(scoreball.pos.x,scoreball.pos.y, ballRadius*2);
 
-  line()
+  stroke('black');
+  line(scoreball.pos.x + ballRadius,scoreball.pos.y,scoreball.pos.x + ballRadius,scoreball.pos.y + prop)
 
+  line(scoreball.pos.x - ballRadius,scoreball.pos.y,scoreball.pos.x - ballRadius,scoreball.pos.y + prop)
+
+  fill('red');
+  triangle(scoreball.pos.x - ballRadius, scoreball.pos.y, scoreball.pos.x - ballRadius, scoreball.pos.y - 0.5 * prop, scoreball.pos.x - ballRadius + 0.5 * prop, scoreball.pos.y - 0.25 * prop)
+
+  triangle(scoreball.pos.x + ballRadius, scoreball.pos.y, scoreball.pos.x + ballRadius, scoreball.pos.y - 0.5 * prop, scoreball.pos.x + ballRadius + 0.5 * prop, scoreball.pos.y - 0.25 * prop)
   
   var fixedConnections = [];
   
