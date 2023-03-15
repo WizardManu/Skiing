@@ -103,10 +103,13 @@ function draw() {
   
   
   if (scoreball.pos.x - ballRadius < ball.pos.x && ball.pos.x < scoreball.pos.x + ballRadius) {
-    if (ball.oldPos.y <= scoreball.pos.y && ball.pos.y > scoreball.pos.y) {
-      score++;
-      lastScore = tick
-      scoreball.pos.x = Math.floor(Math.random() * (width - (2 * margin + 2 * ballRadius + 50)) + (margin + ballRadius));
+    if (scoreball.pos.y < ball.pos.y && ball.pos.y < scoreball.pos.y + ballRadius) {
+      if (ball.oldPos.y < ball.pos.y){
+        score++;
+        lastScore = tick
+        scoreball.pos.x = Math.floor(Math.random() * (width - (2 * margin + 2 * ballRadius + 50)) + (margin + ballRadius));
+        scoreball.pos.y = height - margin - ballRadius - 1;
+      }
     }
   }
   
