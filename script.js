@@ -88,7 +88,7 @@ function draw() {
     return;
   }
   
-  background(40);
+  background(200);
   
   drawScene();
   applyVerlet();
@@ -98,7 +98,7 @@ function draw() {
     ball.pos.x -= 0.1;
   }
   if (keyIsDown(RIGHT_ARROW)) {
-    ball.pos.x += 0.05;
+    ball.pos.x += 0.1;
   }
   
   
@@ -135,7 +135,7 @@ function drawScene() {
   fill(180);
   
   if (lastScore && tick - lastScore < 40) {
-    fill(lerpColor(color(173, 235, 177), color(180), (tick - lastScore)/40));
+    fill(lerpColor(color(173, 235, 177), color(100), (tick - lastScore)/40));
   }
   
   strokeWeight(3);
